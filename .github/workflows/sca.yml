@@ -1,0 +1,19 @@
+name: SCA Scan - npm audit
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sca-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run SCA scan with npm audit
+      run: npm audit --audit-level=moderate
