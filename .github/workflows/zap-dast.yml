@@ -16,6 +16,7 @@ jobs:
         with:
           target: 'https://vulnerable-web-app-juanparra-d1e6880be163.herokuapp.com/'
           cmd_options: '-a'  # Activar escaneo activo
+          upload_artifact: false  # ✅ Desactiva subida automática que genera error
 
       - name: Upload ZAP report
         uses: actions/upload-artifact@v4
