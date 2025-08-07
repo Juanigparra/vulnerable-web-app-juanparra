@@ -3,6 +3,10 @@ name: OWASP ZAP Full Scan
 on:
   workflow_dispatch:
 
+permissions:
+  issues: write
+  contents: read
+
 jobs:
   zap_full_scan:
     runs-on: ubuntu-latest
