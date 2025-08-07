@@ -15,11 +15,12 @@ jobs:
         uses: zaproxy/action-full-scan@v0.10.0
         with:
           target: 'https://vulnerable-web-app-juanparra-d1e6880be163.herokuapp.com/'
-          cmd_options: '-a'  # Activar escaneo activo
-          upload_artifact: false  # ✅ Desactiva subida automática que genera error
+          cmd_options: '-a'
+          artifact_name: zap-full-report  
+          allow_issue_writing: true       
 
-      - name: Upload ZAP report
+      - name: Upload ZAP report 
         uses: actions/upload-artifact@v4
         with:
-          name: zap-full-report
+          name: zap-report
           path: report_html.html
