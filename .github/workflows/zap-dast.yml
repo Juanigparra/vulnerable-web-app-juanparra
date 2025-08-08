@@ -17,10 +17,13 @@ jobs:
           target: 'https://vulnerable-web-app-juanparra-d1e6880be163.herokuapp.com/'
           cmd_options: '-a'
           allow_issue_writing: true
-          artifact_name: ReporteZap
+          artifact_name: reportezap
 
       - name: Upload ZAP report 
         uses: actions/upload-artifact@v4
         with:
-          name: Reporte_Dast
+          name: reporte_dast
           path: report.json
+
+      - name: Verificar reporte generado
+        run: ls -lh report.json
