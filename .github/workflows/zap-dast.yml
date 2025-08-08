@@ -27,4 +27,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: reporte_dast
-          path: report.jsonss
+          path: report.json 
