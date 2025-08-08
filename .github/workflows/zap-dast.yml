@@ -1,30 +1,31 @@
-name: OWASP ZAP Full Scan
+name: OWASP ZAP Baseline Scan
 
 on:
   workflow_dispatch:
 
 permissions:
-  issues: write
   contents: read
-  actions: write
 
 jobs:
-  zap_full_scan:
+  zap_baseline_scan:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Run OWASP ZAP full scan
-        uses: zaproxy/action-full-scan@v0.10.0
+      - name: Run OWASP ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.10.0
         with:
           target: 'https://vulnerable-web-app-juanparra-d1e6880be163.herokuapp.com/'
-          cmd_options: '-a'
-          allow_issue_writing: true
-          artifact_name: reporte_zap
+          cmd_options: '-a'  
+          allow_issue_writing: false  
 
-      - name: Ver archivos generados
+      - name: Buscar archivos generados
         run: find . -type f
 
-      - name: Upload ZAP report
+      - name: Subir reporte HTML
         uses: actions/upload-artifact@v4
         with:
-          name: reporte_dast
-          path: report.json 
+          name: reporte_dast_zap
+          path: zap_report.html
+
+      - name: Verificar archivo de reporte
+        run: ls -lh zap_report.html
